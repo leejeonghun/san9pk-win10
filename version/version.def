@@ -1,0 +1,5 @@
+LIBRARY VERSION
+EXPORTS
+	GetFileVersionInfoSizeA
+    GetFileVersionInfoA
+    VerQueryValueA
