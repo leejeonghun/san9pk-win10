@@ -5,6 +5,7 @@
 #include <winternl.h>
 #include <cassert>
 #include "func_hooker.h"
+#include "fullscreen_fix.h"
 #include "../third_party/SafeDiscShim/src/secdrv_ioctl.h"
 
 using namespace secdrvIoctl;
@@ -53,13 +54,20 @@ HWND WINAPI hook_createwindowexa(DWORD dwExStyle, LPCSTR lpClassName,
     LPCSTR lpWindowName, DWORD dwStyle, int X, int Y, int nWidth, int nHeight,
     HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {
   func_hooker::rehook_on_exit rehook(createwindowexa);
+  HWND hwnd = CreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y,
+      nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+
   if (lstrcmpiA(lpClassName, "dummy") != 0) {
     rehook.cancel();
     ntdeviceiocontrolfile.unhook();
     createfilea.unhook();
+
+    if (~dwStyle & WS_CAPTION) {
+      fullscreen::fix(hwnd);
+    }
   }
-  return CreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y,
-      nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+
+  return hwnd;
 }
 
 bool emulate() {

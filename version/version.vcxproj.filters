@@ -42,6 +42,9 @@
     <ClCompile Include="..\third_party\SafeDiscShim\src\secdrv_ioctl.cpp">
       <Filter>Source Files\secdrv</Filter>
     </ClCompile>
+    <ClCompile Include="fullscreen_fix.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dll_loader.h">
@@ -70,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fullscreen_fix.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

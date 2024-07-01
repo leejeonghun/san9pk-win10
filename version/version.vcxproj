@@ -91,6 +91,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)secdrv</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="code_patcher.cc" />
+    <ClCompile Include="fullscreen_fix.cc" />
     <ClCompile Include="func_hooker.cc" />
     <ClCompile Include="nocd_patch.cc" />
     <ClCompile Include="main.cc" />
@@ -106,6 +107,7 @@
     <ClInclude Include="..\third_party\SafeDiscShim\src\secdrv_ioctl.h" />
     <ClInclude Include="code_patcher.h" />
     <ClInclude Include="dll_loader.h" />
+    <ClInclude Include="fullscreen_fix.h" />
     <ClInclude Include="func_hooker.h" />
     <ClInclude Include="nocd_patch.h" />
     <ClInclude Include="precompile.h" />
